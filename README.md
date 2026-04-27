@@ -1,55 +1,96 @@
-# 📝 Smart Marksheet Parser
+# 📊 Smart Marksheet Parser: Comparative Extraction Pipeline
 
-A high-fidelity document extraction pipeline designed for Indian school marksheets (ICSE, ISC, CBSE). This system uses a hybrid approach: **EasyOCR** for text localization and **Groq (Llama 3.3)** for intelligent structured parsing.
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://www.python.org/)
+[![Groq](https://img.shields.io/badge/Powered%20By-Groq-orange.svg)](https://groq.com/)
+[![Streamlit](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 
-## 🚀 Features
-- **Dual Pipeline Strategy**:
-    - **Structured Parser**: Follows a strict Pydantic contract. Perfect for automation and databases.
-    - **Dynamic Parser**: An "Open-World" analyst that adapts its schema to the specific document.
-- **Board Agnostic**: Successfully tested against ICSE, ISC, and CBSE formats.
-- **Token Optimized**: Built-in sanitization to strip OCR noise and minimize API quota usage.
-- **High Speed**: Powered by Groq's LPUs (Llama 3.3 70B).
+A premium, high-fidelity document extraction engine specifically engineered for Indian educational marksheets (CBSE, ICSE, ISC). This system leverages **EasyOCR** for precise spatial text localization and **Groq Cloud (Llama 3.3 70B)** for intelligent, context-aware structured parsing.
 
-## 🛠 Setup & Installation
+---
 
-1. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-2. **Configure Environment**:
-   Create a `.env` file in the root directory:
-   ```env
-   GROQ_API_KEY=your_groq_key_here
-   ```
-3. **System Requirements**: 
-   Ensure `poppler-utils` is installed on your OS (required for PDF processing).
+## ✨ Key Features
 
-## 🏃‍♂️ How to Run
+- **⚡ Dual-Engine Extraction**: Run two distinct methodologies side-by-side to compare accuracy and depth.
+- **🎯 Structured Parser**: Uses strict Pydantic schemas to ensure data integrity. Ideal for automated database ingestion.
+- **🧠 Dynamic Parser**: An adaptable "Open-World" analyst that discovers fields on-the-fly, capturing unique nuances of varied document formats.
+- **📄 Format Agnostic**: Seamlessly processes PDF and Image formats for all major Indian boards.
+- **📉 Token Optimized**: Advanced pre-processing strips OCR artifacts and noise, ensuring maximum efficiency and minimal LLM latency.
+- **💾 Multi-Format Export**: One-click export of extracted data into clean **JSON** or flattened **CSV** formats.
 
-### 1. Structured Pipeline (Standard)
-Best for production use where you need consistent keys.
+---
+
+## 🏗 Project Architecture
+
+```text
+marksheet-parser/
+├── app.py                      # Main Streamlit Dashboard (Dual-Method Runner)
+├── method_structured/          # Strict schema-based extraction logic
+│   └── src/parser.py           # Pydantic-validated parsing engine
+├── method_dynamic/             # Adaptive, schema-less extraction logic
+│   └── src/parser.py           # Zero-shot field discovery engine
+├── data/                       # Local storage for raw and processed documents
+├── requirements.txt            # Project dependencies
+└── .env                        # Environment configuration (API Keys)
+```
+
+---
+
+## 🛠 Installation & Setup
+
+### 1. Prerequisites
+Ensure you have Python 3.9+ and `poppler-utils` (for PDF processing) installed on your system.
+```bash
+# For Ubuntu/Debian
+sudo apt-get install poppler-utils
+```
+
+### 2. Clone & Install
+```bash
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 3. Configuration
+Create a `.env` file in the root directory and add your Groq API Key:
+```env
+GROQ_API_KEY=gsk_your_api_key_here
+```
+
+---
+
+## 🏃‍♂️ Getting Started
+
+Launch the comparative dashboard with a single command:
+
 ```bash
 streamlit run app.py
 ```
-*Access at: http://localhost:8501*
 
-### 2. Dynamic Pipeline (Alpha)
-Best for exploratory analysis and capturing every single detail/note.
-```bash
-streamlit run app_dynamic.py --server.port 8502
-```
-*Access at: http://localhost:8502*
+Once running, simply upload your marksheet. The system will automatically:
+1. Perform OCR and spatial analysis.
+2. Trigger the **Structured** and **Dynamic** LLM pipelines in parallel.
+3. Present a side-by-side comparison with instant export options.
 
-## 🏗 Project Structure
-- `src/`: Core logic, Pydantic schemas, and structured LLM prompts.
-- `src_dynamic/`: Adaptive parser logic without fixed schemas.
-- `data/raw/`: Place your test marksheets here.
-- `diag_api.py`: Utility to verify available models and API status.
+---
 
-## ⚖️ Schema Details
-The structured output includes:
-- **Personal Metadata**: Name, Parents, DOB, Unique IDs.
-- **Academic Table**: Subject Codes, Marks, Alphabetical/Positional Grades.
-- **Hierarchical Components**: Support for nested marks (e.g., Theory/Practical or Lang/Lit).
-- **Internal Assessments**: Graded subjects like SUPW.
-- **Result Info**: Pass/Fail status and Declaration Date.
+## 🔬 Methodology Comparison
+
+| Feature | Structured Method | Dynamic Method |
+| :--- | :--- | :--- |
+| **Logic** | Validated Pydantic Schema | Zero-shot Schema Discovery |
+| **Best For** | Production Systems & DBs | Research & Complex Layouts |
+| **Flexibility** | High (handles board variations) | Extreme (handles unknown formats) |
+| **Output Type** | Predicted JSON Keys | Adaptive JSON Keys |
+
+---
+
+## ⚖️ Extraction Scope
+
+The engine is tuned to capture:
+- **Identity**: Student name, Parents, Registration Numbers, DOB.
+- **Institutional**: School details, Board name, Year of Exam.
+- **Academic**: Subject-wise Theory/Practical marks, Internal Assessments (SUPW), Positional Grades.
+- **Results**: Final status, total marks, and declaration dates.
+
+---
+*Developed with focus on accuracy and speed using Llama 3-series models on Groq LPUs.*
