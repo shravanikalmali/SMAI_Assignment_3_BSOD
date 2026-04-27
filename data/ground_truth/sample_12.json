@@ -1,0 +1,33 @@
+{
+  "name": "Aarav Sharma",
+  "board": "CBSE",
+  "year": "2023",
+  "subjects": [
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "74"
+    },
+    {
+      "subject": "PHYSICS",
+      "marks": "47"
+    },
+    {
+      "subject": "BIOLOGY",
+      "marks": "78"
+    },
+    {
+      "subject": "MATHEMATICS",
+      "marks": "87"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "81"
+    },
+    {
+      "subject": "CHEMISTRY",
+      "marks": "52"
+    }
+  ],
+  "total": "419",
+  "percentage": "69.83%"
+}

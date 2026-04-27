@@ -1,0 +1,37 @@
+{
+  "name": "Aditi Rao",
+  "board": "CBSE",
+  "year": "2023",
+  "subjects": [
+    {
+      "subject": "BIOLOGY",
+      "marks": "74"
+    },
+    {
+      "subject": "MATHEMATICS",
+      "marks": "97"
+    },
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "70"
+    },
+    {
+      "subject": "COMPUTER SCIENCE",
+      "marks": "50"
+    },
+    {
+      "subject": "PHYSICS",
+      "marks": "79"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "69"
+    },
+    {
+      "subject": "CHEMISTRY",
+      "marks": "72"
+    }
+  ],
+  "total": "511",
+  "percentage": "73.0%"
+}

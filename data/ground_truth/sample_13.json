@@ -1,0 +1,29 @@
+{
+  "name": "Saanvi Patel",
+  "board": "ICSE",
+  "year": "2018",
+  "subjects": [
+    {
+      "subject": "HINDI",
+      "marks": "43"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "68"
+    },
+    {
+      "subject": "CHEMISTRY",
+      "marks": "81"
+    },
+    {
+      "subject": "COMPUTER SCIENCE",
+      "marks": "79"
+    },
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "53"
+    }
+  ],
+  "total": "324",
+  "percentage": "64.8%"
+}

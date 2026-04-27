@@ -1,0 +1,37 @@
+{
+  "name": "Ananya Reddy",
+  "board": "ICSE",
+  "year": "2019",
+  "subjects": [
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "70"
+    },
+    {
+      "subject": "MATHEMATICS",
+      "marks": "62"
+    },
+    {
+      "subject": "CHEMISTRY",
+      "marks": "98"
+    },
+    {
+      "subject": "HINDI",
+      "marks": "55"
+    },
+    {
+      "subject": "PHYSICS",
+      "marks": "63"
+    },
+    {
+      "subject": "COMPUTER SCIENCE",
+      "marks": "73"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "77"
+    }
+  ],
+  "total": "498",
+  "percentage": "71.14%"
+}

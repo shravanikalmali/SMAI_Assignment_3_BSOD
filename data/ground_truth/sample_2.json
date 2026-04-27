@@ -1,0 +1,33 @@
+{
+  "name": "Saanvi Patel",
+  "board": "ICSE",
+  "year": "2023",
+  "subjects": [
+    {
+      "subject": "CHEMISTRY",
+      "marks": "82"
+    },
+    {
+      "subject": "BIOLOGY",
+      "marks": "96"
+    },
+    {
+      "subject": "PHYSICS",
+      "marks": "72"
+    },
+    {
+      "subject": "COMPUTER SCIENCE",
+      "marks": "46"
+    },
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "40"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "77"
+    }
+  ],
+  "total": "413",
+  "percentage": "68.83%"
+}

@@ -1,0 +1,13 @@
+groq
+easyocr
+torch
+torchvision
+pypdf
+pydantic
+streamlit
+python-dotenv
+pandas
+pillow
+numpy
+pymupdf
+pdf2image

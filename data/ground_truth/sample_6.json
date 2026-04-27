@@ -1,0 +1,29 @@
+{
+  "name": "Ananya Reddy",
+  "board": "ICSE",
+  "year": "2020",
+  "subjects": [
+    {
+      "subject": "MATHEMATICS",
+      "marks": "77"
+    },
+    {
+      "subject": "HINDI",
+      "marks": "66"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "71"
+    },
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "86"
+    },
+    {
+      "subject": "PHYSICS",
+      "marks": "41"
+    }
+  ],
+  "total": "341",
+  "percentage": "68.2%"
+}

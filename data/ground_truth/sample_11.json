@@ -1,0 +1,33 @@
+{
+  "name": "Vihaan Gupta",
+  "board": "CBSE",
+  "year": "2024",
+  "subjects": [
+    {
+      "subject": "COMPUTER SCIENCE",
+      "marks": "54"
+    },
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "95"
+    },
+    {
+      "subject": "PHYSICS",
+      "marks": "78"
+    },
+    {
+      "subject": "CHEMISTRY",
+      "marks": "50"
+    },
+    {
+      "subject": "BIOLOGY",
+      "marks": "88"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "74"
+    }
+  ],
+  "total": "439",
+  "percentage": "73.17%"
+}

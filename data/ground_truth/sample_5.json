@@ -1,0 +1,37 @@
+{
+  "name": "Saanvi Patel",
+  "board": "ICSE",
+  "year": "2022",
+  "subjects": [
+    {
+      "subject": "COMPUTER SCIENCE",
+      "marks": "65"
+    },
+    {
+      "subject": "ENGLISH",
+      "marks": "99"
+    },
+    {
+      "subject": "PHYSICS",
+      "marks": "44"
+    },
+    {
+      "subject": "CHEMISTRY",
+      "marks": "60"
+    },
+    {
+      "subject": "SOCIAL SCIENCE",
+      "marks": "88"
+    },
+    {
+      "subject": "HINDI",
+      "marks": "52"
+    },
+    {
+      "subject": "MATHEMATICS",
+      "marks": "68"
+    }
+  ],
+  "total": "476",
+  "percentage": "68.0%"
+}
