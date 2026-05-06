@@ -9,6 +9,15 @@ import numpy as np
 from paddleocr import PaddleOCR
 import sys
 
+
+ocr_instance = PaddleOCR(
+    use_angle_cls=True,
+    lang='en',
+    layout=True,
+    show_log=False,
+    use_gpu=False
+)
+
 class LayoutParser:
     """
     Uses PaddleOCR's layout analysis to detect and extract document sections.
@@ -16,31 +25,17 @@ class LayoutParser:
     """
     
     def __init__(self, debug=True):
-        """
-        Initialize PaddleOCR with layout detection enabled.
-        
-        Args:
-            debug: If True, prints detailed information about detected sections
-        """
         self.debug = debug
         
         print("\n" + "="*60)
-        print("🔄 Initializing PaddleOCR with Layout Detection...")
+        print("🔄 Using shared PaddleOCR instance...")
         print("="*60)
         
-        # Initialize PaddleOCR with layout analysis
-        # layout=True is the key - it detects document structure
-        self.ocr = PaddleOCR(
-            use_angle_cls=True,      # Detect text orientation
-            lang='en',                # English language
-            layout=True,              # ENABLE LAYOUT DETECTION (this is what we need!)
-            show_log=False,           # Reduce console clutter
-            use_gpu=False             # Use CPU (free tier friendly)
-        )
+        self.ocr = ocr_instance
         
-        print("✅ PaddleOCR initialized successfully!")
-        print("   Layout detection is ENABLED - will identify tables, headers, etc.\n")
-    
+        print("✅ PaddleOCR ready!\n")
+
+
     def extract_sections(self, image_path):
         """
         Extract text from document, grouped by detected layout sections.
