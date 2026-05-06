@@ -11,3 +11,6 @@ pillow
 numpy
 pymupdf
 pdf2image
+opencv-python
+paddlepaddle
+paddleocr
