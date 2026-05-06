@@ -80,7 +80,7 @@ chmod +x setup.sh
 ./setup.sh run
 ```
 
-Launch the comparative dashboard with a single command:
+or, if not prompted to the website, Launch the comparative dashboard with the command:
 
 ```bash
 streamlit run app.py
