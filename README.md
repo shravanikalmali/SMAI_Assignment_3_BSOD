@@ -42,7 +42,15 @@ marksheet-parser/
 
 ## 🛠 Installation & Setup
 
+### Optional: Create Environment
+```bash
+cd your-project-folder
+python3 -m venv venv
+source venv/bin/activate
+```
+
 ### 1. Prerequisites
+
 Ensure you have Python 3.9+ and `poppler-utils` (for PDF processing) installed on your system.
 ```bash
 # For Ubuntu/Debian
