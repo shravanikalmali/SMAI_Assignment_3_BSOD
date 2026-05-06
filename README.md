@@ -23,13 +23,18 @@ A premium, high-fidelity document extraction engine specifically engineered for 
 
 ```text
 marksheet-parser/
-├── app.py                      # Main Streamlit Dashboard (Dual-Method Runner)
+├── app.py                      # Main Streamlit Dashboard (multi-method runner)
 ├── method_structured/          # Strict schema-based extraction logic
 │   └── src/parser.py           # Pydantic-validated parsing engine
 ├── method_dynamic/             # Adaptive, schema-less extraction logic
 │   └── src/parser.py           # Zero-shot field discovery engine
-├── data/                       # Local storage for raw and processed documents
+├── method_sectioned/           # Heuristic section detection + focused LLM
+│   └── src/parser.py
+├── method_trained_sectioned/   # Trained boundary section detection + LLM
+│   └── src/train_section_detector.py
+├── data/                       # Local storage for raw/processed/training data
 ├── requirements.txt            # Project dependencies
+├── setup.sh                    # One-shot setup + run helpers
 └── .env                        # Environment configuration (API Keys)
 ```
 
@@ -37,7 +42,15 @@ marksheet-parser/
 
 ## 🛠 Installation & Setup
 
+### Optional: Create Environment
+```bash
+cd your-project-folder
+python3 -m venv venv
+source venv/bin/activate
+```
+
 ### 1. Prerequisites
+
 Ensure you have Python 3.9+ and `poppler-utils` (for PDF processing) installed on your system.
 ```bash
 # For Ubuntu/Debian
@@ -60,16 +73,44 @@ GROQ_API_KEY=gsk_your_api_key_here
 
 ## 🏃‍♂️ Getting Started
 
-Launch the comparative dashboard with a single command:
+Use the helper script:
+
+```bash
+chmod +x setup.sh
+./setup.sh run
+```
+
+or, if not prompted to the website, Launch the comparative dashboard with the command:
 
 ```bash
 streamlit run app.py
 ```
 
+
 Once running, simply upload your marksheet. The system will automatically:
 1. Perform OCR and spatial analysis.
 2. Trigger the **Structured** and **Dynamic** LLM pipelines in parallel.
 3. Present a side-by-side comparison with instant export options.
+
+---
+
+## 🧪 Trained Section Detector (Optional)
+
+The trained section detector learns **page-region boundaries** from labeled marksheets.
+It does **not** save a deep-learning model file; it saves learned boundary rules as JSON.
+
+**Training data location:**
+- `data/training_data/`
+
+**Outputs saved to:**
+- `method_trained_sectioned/config/section_boundaries.json`
+- `method_trained_sectioned/config/raw_boundaries_analysis.json`
+- `method_trained_sectioned/config/boundary_visualization.txt`
+
+**Run training:**
+```bash
+./setup.sh train
+```
 
 ---
 

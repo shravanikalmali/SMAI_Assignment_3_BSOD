@@ -4,7 +4,7 @@ Main parser that orchestrates layout detection + focused LLM extraction.
 
 import json
 import sys
-from .layout_parser import LayoutParser
+from .layout_parser import LayoutParser  # ← This is your EasyOCR version
 from .llm_extractor import extract_student_info, extract_subjects, extract_totals
 
 
@@ -113,13 +113,12 @@ def parse_sectioned(file_path, debug=True):
     print("="*70 + "\n")
     
     return result
-
-
 def _full_document_fallback(full_text, current_result):
     """Fallback: Send entire document to LLM if section extraction failed"""
     try:
         from groq import Groq
         import os
+        import json
         
         client = Groq(api_key=os.getenv("GROQ_API_KEY"))
         
@@ -161,6 +160,7 @@ Return ONLY valid JSON, no other text.
         
         fallback_data = json.loads(response.choices[0].message.content)
         
+        # Update current_result with fallback data
         for key in ['student_name', 'father_name', 'mother_name', 'roll_number', 
                     'total_marks', 'maximum_marks', 'percentage', 'result', 'division']:
             if fallback_data.get(key):
@@ -169,11 +169,15 @@ Return ONLY valid JSON, no other text.
         if fallback_data.get('subjects'):
             current_result['subjects'] = fallback_data['subjects']
         
+        if '_metadata' not in current_result:
+            current_result['_metadata'] = {}
         current_result['_metadata']['fallback_success'] = True
         print("   ✅ Fallback extraction successful!")
         
     except Exception as e:
         print(f"   ❌ Fallback failed: {e}")
+        if '_metadata' not in current_result:
+            current_result['_metadata'] = {}
         current_result['_metadata']['fallback_error'] = str(e)
     
     return current_result

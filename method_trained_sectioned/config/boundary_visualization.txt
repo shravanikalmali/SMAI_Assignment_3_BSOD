@@ -1,0 +1,32 @@
+======================================================================
+SECTION BOUNDARY VISUALIZATION (Expanded +10%)
+======================================================================
+
+Page Layout (Top to Bottom):
+----------------------------------------------------------------------
+
+STUDENT_INFO:
+  Position: 0.0% to 43.6% of page
+  Height: 43.6% of page
+  Visual: ███████████████████████████████████████████
+
+SUBJECT_TABLE:
+  Position: 43.8% to 69.4% of page
+  Height: 25.6% of page
+  Visual: █████████████████████████
+
+TOTALS:
+  Position: 37.3% to 60.1% of page
+  Height: 22.8% of page
+  Visual: ██████████████████████
+
+RESULT:
+  Position: 50.3% to 100.0% of page
+  Height: 49.7% of page
+  Visual: █████████████████████████████████████████████████
+
+----------------------------------------------------------------------
+Legend:
+  █ = Section occupies this percentage of page height
+
+Generated on: 2026-05-06 21:28:35
