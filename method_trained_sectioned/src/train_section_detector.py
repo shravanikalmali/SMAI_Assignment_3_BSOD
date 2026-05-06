@@ -296,11 +296,12 @@ def main():
     print("="*70)
     print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
-    # Get the base directory (project root)
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    training_dir = os.path.join(base_dir, "data", "training_data")
+    # Get the project root and method directory
+    project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    method_dir = os.path.join(project_root, "method_trained_sectioned")
+    training_dir = os.path.join(project_root, "data", "training_data")
     
-    print(f"\n📁 Base directory: {base_dir}")
+    print(f"\n📁 Project root: {project_root}")
     print(f"📁 Training data path: {training_dir}")
     
     # Check if training directory exists
@@ -323,8 +324,8 @@ def main():
         return None
     
     # Create directories for saving model
-    model_dir = os.path.join(base_dir, "method_trained_sectioned", "models")
-    config_dir = os.path.join(base_dir, "method_trained_sectioned", "config")
+    model_dir = os.path.join(method_dir, "models")
+    config_dir = os.path.join(method_dir, "config")
     os.makedirs(model_dir, exist_ok=True)
     os.makedirs(config_dir, exist_ok=True)
     
@@ -345,7 +346,8 @@ def main():
     detector.save_boundaries(final_boundaries, raw_boundaries, boundaries_path, raw_path)
     
     # Create visualization
-    visualize_boundaries(final_boundaries)
+    visualization_path = os.path.join(config_dir, "boundary_visualization.txt")
+    visualize_boundaries(final_boundaries, output_path=visualization_path)
     
     print("\n" + "="*70)
     print("📊 FINAL TRAINING SUMMARY (EXPANDED +10%)")
@@ -358,7 +360,7 @@ def main():
     print("\n📁 Output files created:")
     print(f"   • {boundaries_path}")
     print(f"   • {raw_path}")
-    print(f"   • method_trained_sectioned/config/boundary_visualization.txt")
+    print(f"   • {visualization_path}")
     
     print("\n" + "="*70)
     print("✅ TRAINING COMPLETE!")
