@@ -83,7 +83,8 @@ class LayoutParser:
         
         # Run OCR with layout detection
         print("   Running OCR with layout detection...")
-        result = self.ocr.ocr(image_path, rec=True, layout=True)
+        result = self.ocr.ocr(image_path, rec=True)
+        print("RAW OCR RESULT:", result)
         
         # Parse the result
         sections = self._parse_layout_result(result, img_height)
