@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 Training script for marksheet section detector with detailed output
+Includes +-10% expansion on final boundaries
 """
 
 import os
@@ -104,7 +105,7 @@ class SimpleSectionDetector:
                 text_type = block['text_type']
                 if text_type != 'other':
                     all_y_positions[text_type].append(block['y'])
-                    if len(text_examples[text_type]) < 3:  # Store first 3 examples
+                    if len(text_examples[text_type]) < 3:
                         text_examples[text_type].append(block['text'])
         
         # Print statistics
@@ -149,8 +150,8 @@ class SimpleSectionDetector:
                 p95 = np.percentile(positions, 95)
                 
                 boundaries[section] = {
-                    'y_min': float(p10),  # Conservative lower bound
-                    'y_max': float(p90),  # Conservative upper bound
+                    'y_min': float(p10),
+                    'y_max': float(p90),
                     'mean_y': float(np.mean(positions)),
                     'median_y': float(p50),
                     'std_y': float(np.std(positions)),
@@ -167,13 +168,10 @@ class SimpleSectionDetector:
                 }
                 
                 print(f"\n📌 {section_names[section]}:")
-                print(f"   📍 Position range: {p10:.1f}% - {p90:.1f}% of page")
+                print(f"   📍 Raw range: {p10:.1f}% - {p90:.1f}% of page")
                 print(f"   📊 Median position: {p50:.1f}%")
                 print(f"   📈 Confidence (std): ±{np.std(positions):.1f}%")
                 print(f"   🔢 Sample size: {len(positions)} text blocks")
-                print(f"\n   Detailed percentiles:")
-                print(f"      5%: {p5:.1f}%  |  25%: {p25:.1f}%  |  50%: {p50:.1f}%")
-                print(f"     75%: {p75:.1f}%  |  90%: {p90:.1f}%  |  95%: {p95:.1f}%")
                 
             else:
                 print(f"\n⚠️ Not enough data for {section_names[section]}")
@@ -189,51 +187,57 @@ class SimpleSectionDetector:
                     boundaries[section] = {'y_min': 85, 'y_max': 100, 'mean_y': 92}
                 print(f"   Using default values: {boundaries[section]['y_min']:.0f}%-{boundaries[section]['y_max']:.0f}%")
         
-        # Create final section mapping
-        final_boundaries = self._create_section_mapping(boundaries)
+        # Create final section mapping with +-10% expansion
+        final_boundaries = self._create_section_mapping_with_expansion(boundaries)
         
         return final_boundaries, boundaries
     
-    def _create_section_mapping(self, boundaries):
-        """Convert detected clusters to final section boundaries"""
+    def _create_section_mapping_with_expansion(self, boundaries):
+        """
+        Convert detected clusters to final section boundaries with +-10% expansion
+        """
         
         final_boundaries = {}
         
-        # Student info (top of page)
-        if 'student_info' in boundaries:
-            final_boundaries['student_info'] = {
-                'y_min': 0,
-                'y_max': min(35, boundaries['student_info']['y_max'])
-            }
-        else:
-            final_boundaries['student_info'] = {'y_min': 0, 'y_max': 25}
+        # Calculate range sizes and add 10% expansion
+        for section, bounds in boundaries.items():
+            range_size = bounds['y_max'] - bounds['y_min']
+            expand_amount = range_size * 0.10  # 10% expansion
+            
+            if section == 'student_info':
+                # Student info starts at top, only expand downwards
+                final_boundaries['student_info'] = {
+                    'y_min': 0,
+                    'y_max': min(100, bounds['y_max'] + expand_amount)
+                }
+            elif section == 'subject':
+                # Subject table expands both ways
+                final_boundaries['subject_table'] = {
+                    'y_min': max(0, bounds['y_min'] - expand_amount),
+                    'y_max': min(100, bounds['y_max'] + expand_amount)
+                }
+            elif section == 'total':
+                # Totals expands both ways
+                final_boundaries['totals'] = {
+                    'y_min': max(0, bounds['y_min'] - expand_amount),
+                    'y_max': min(100, bounds['y_max'] + expand_amount)
+                }
+            elif section == 'result':
+                # Result goes to bottom, only expand upwards
+                final_boundaries['result'] = {
+                    'y_min': max(0, bounds['y_min'] - expand_amount),
+                    'y_max': 100
+                }
         
-        # Subject table (middle)
-        if 'subject' in boundaries:
-            final_boundaries['subject_table'] = {
-                'y_min': max(20, boundaries['subject']['y_min']),
-                'y_max': boundaries['subject']['y_max']
-            }
-        else:
-            final_boundaries['subject_table'] = {'y_min': 25, 'y_max': 65}
-        
-        # Totals
-        if 'total' in boundaries:
-            final_boundaries['totals'] = {
-                'y_min': boundaries['total']['y_min'],
-                'y_max': boundaries['total']['y_max']
-            }
-        else:
-            final_boundaries['totals'] = {'y_min': 65, 'y_max': 85}
-        
-        # Result
-        if 'result' in boundaries:
-            final_boundaries['result'] = {
-                'y_min': boundaries['result']['y_min'],
-                'y_max': 100
-            }
-        else:
-            final_boundaries['result'] = {'y_min': 85, 'y_max': 100}
+        # Ensure all sections exist (fallback if missing)
+        if 'student_info' not in final_boundaries:
+            final_boundaries['student_info'] = {'y_min': 0, 'y_max': 30}
+        if 'subject_table' not in final_boundaries:
+            final_boundaries['subject_table'] = {'y_min': 25, 'y_max': 70}
+        if 'totals' not in final_boundaries:
+            final_boundaries['totals'] = {'y_min': 60, 'y_max': 85}
+        if 'result' not in final_boundaries:
+            final_boundaries['result'] = {'y_min': 80, 'y_max': 100}
         
         return final_boundaries
     
@@ -249,7 +253,7 @@ class SimpleSectionDetector:
         with open(raw_path, 'w') as f:
             json.dump(raw_boundaries, f, indent=2)
         
-        print(f"\n✅ Final boundaries saved to: {boundaries_path}")
+        print(f"\n✅ Final boundaries (expanded +10%) saved to: {boundaries_path}")
         print(f"✅ Detailed analysis saved to: {raw_path}")
 
 def visualize_boundaries(boundaries, output_path="method_trained_sectioned/config/boundary_visualization.txt"):
@@ -259,20 +263,18 @@ def visualize_boundaries(boundaries, output_path="method_trained_sectioned/confi
     
     with open(output_path, 'w') as f:
         f.write("="*70 + "\n")
-        f.write("SECTION BOUNDARY VISUALIZATION\n")
+        f.write("SECTION BOUNDARY VISUALIZATION (Expanded +10%)\n")
         f.write("="*70 + "\n\n")
         
         f.write("Page Layout (Top to Bottom):\n")
         f.write("-"*70 + "\n\n")
         
-        # Create a visual representation
         for section, bounds in boundaries.items():
             y_min = bounds['y_min']
             y_max = bounds['y_max']
             height = y_max - y_min
             
-            # Create a simple bar visualization
-            bar_length = int(height)  # 1 char per percent
+            bar_length = int(height)
             bar = "█" * bar_length
             
             f.write(f"{section.upper()}:\n")
@@ -290,7 +292,7 @@ def main():
     """Main training function"""
     
     print("="*70)
-    print("🎯 TRAINING SECTION DETECTOR WITH DETAILED OUTPUT")
+    print("🎯 TRAINING SECTION DETECTOR WITH +-10% EXPANSION")
     print("="*70)
     print(f"Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     
@@ -346,9 +348,9 @@ def main():
     visualize_boundaries(final_boundaries)
     
     print("\n" + "="*70)
-    print("📊 FINAL TRAINING SUMMARY")
+    print("📊 FINAL TRAINING SUMMARY (EXPANDED +10%)")
     print("="*70)
-    print("🎯 Learned Section Boundaries:")
+    print("🎯 Learned & Expanded Section Boundaries:")
     print("-" * 50)
     for section, bounds in final_boundaries.items():
         print(f"   {section:15} : {bounds['y_min']:5.1f}% - {bounds['y_max']:5.1f}% of page")
@@ -373,6 +375,7 @@ if __name__ == "__main__":
         print("\n📝 Next steps:")
         print("   1. Run: streamlit run app.py")
         print("   2. Upload a marksheet to test the 4th method")
+        print("\n💡 Note: Boundaries were expanded by +-10% to capture more text")
     else:
         print("\n❌ Training failed.")
         print("\nPlease check:")

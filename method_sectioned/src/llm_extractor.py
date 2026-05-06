@@ -13,11 +13,10 @@ load_dotenv()
 
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-
 def extract_student_info(section_text):
     """
     Extract student information from marksheet.
-    Specialized for the student info section only.
+    Enhanced for Indian marksheets with better parent name extraction.
     """
     if not section_text or len(section_text.strip()) < 10:
         print("   ⚠️ No student info section text available")
@@ -45,31 +44,68 @@ Extract ONLY these fields and return valid JSON:
     "date_of_birth": ""
 }}
 
+IMPORTANT: Look for these EXACT patterns in Indian marksheets:
+
+For STUDENT NAME:
+- "Name of the Candidate", "Candidate's Name", "Student Name", "Name:", "APPLICANT'S NAME"
+- Usually appears near the top of the marksheet
+
+For FATHER'S NAME:
+- "Father's Name", "Father Name", "Name of Father", "FATHER'S NAME", "S/o:", "Son of"
+- Often appears right after student name
+- Sometimes written as "Shri [Name]" or "Mr. [Name]"
+
+For MOTHER'S NAME:
+- "Mother's Name", "Mother Name", "Name of Mother", "MOTHER'S NAME", "D/o:", "Daughter of"
+- Often appears after father's name
+- Sometimes written as "Smt [Name]" or "Mrs. [Name]"
+
+For ROLL NUMBER:
+- "Roll No.", "Roll Number", "Index No.", "Index Number", "Reg. No."
+- Usually a numeric or alphanumeric code
+
+For REGISTRATION NUMBER:
+- "Registration No.", "Reg No.", "Unique ID", "Candidate ID"
+- Often a longer number
+
+For DATE OF BIRTH:
+- "Date of Birth", "DOB", "Birth Date"
+- Format: DD-MM-YYYY or DD/MM/YYYY
+
 RULES:
-- Look for patterns like "Name:", "Student Name:", "Roll No:", "Reg No:", "Father:", "Mother:", "DOB:"
-- Remove the labels from the values (extract just "RAHUL KUMAR", not "Name: RAHUL KUMAR")
-- If a field is not found, use null
+- Remove prefixes like "Shri", "Smt", "Mr.", "Mrs.", "Dr." when extracting names
+- Remove labels completely (extract only the value)
+- If a field is not found in the text, use null
+- Pay special attention to parent names - they are critical
 - Return ONLY valid JSON, no extra text
 
-Example output:
+Example output for a typical Indian marksheet:
 {{
-    "student_name": "RAHUL KUMAR",
-    "father_name": "RAMESH KUMAR",
-    "mother_name": "SUNITA KUMAR",
-    "roll_number": "12345",
-    "registration_number": "REG2024001",
+    "student_name": "AHANA TALUKDAR",
+    "father_name": "ARUNANSU TALUKDAR",
+    "mother_name": "PAYEL TALUKDAR",
+    "roll_number": "2237346/093",
+    "registration_number": "7278509",
     "date_of_birth": "15-08-2005"
 }}
 """
     
     result_str = _call_llm(prompt, "student_info_extractor")
+    
     try:
         result = json.loads(result_str)
+        
+        # Clean up any prefixes that might have been missed
+        for field in ['father_name', 'mother_name']:
+            if result.get(field):
+                # Remove common prefixes
+                cleaned = re.sub(r'^(Shri|Smt|Mr\.|Mrs\.|Dr\.|M/s)\s+', '', result[field], flags=re.IGNORECASE)
+                result[field] = cleaned.strip()
+        
         return result
     except json.JSONDecodeError:
         print(f"   ⚠️ Failed to parse student info JSON")
         return {}
-
 
 def extract_subjects(section_text):
     """
