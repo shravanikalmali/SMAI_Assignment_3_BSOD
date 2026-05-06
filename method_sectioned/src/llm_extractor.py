@@ -5,6 +5,7 @@ Each section gets a specialized prompt for better accuracy.
 
 import os
 import json
+import re
 from groq import Groq
 from dotenv import load_dotenv
 
@@ -19,6 +20,7 @@ def extract_student_info(section_text):
     Specialized for the student info section only.
     """
     if not section_text or len(section_text.strip()) < 10:
+        print("   ⚠️ No student info section text available")
         return {}
     
     # Truncate if too long
@@ -60,7 +62,13 @@ Example output:
 }}
 """
     
-    return _call_llm(prompt, "student_info_extractor")
+    result_str = _call_llm(prompt, "student_info_extractor")
+    try:
+        result = json.loads(result_str)
+        return result
+    except json.JSONDecodeError:
+        print(f"   ⚠️ Failed to parse student info JSON")
+        return {}
 
 
 def extract_subjects(section_text):
@@ -69,6 +77,7 @@ def extract_subjects(section_text):
     Specialized for the marks table only.
     """
     if not section_text or len(section_text.strip()) < 20:
+        print("   ⚠️ No subject table section text available")
         return {"subjects": []}
     
     if len(section_text) > 6000:
@@ -109,11 +118,19 @@ Example output:
 }}
 """
     
-    result = _call_llm(prompt, "subject_extractor")
+    result_str = _call_llm(prompt, "subject_extractor")
     try:
-        data = json.loads(result)
-        return data if 'subjects' in data else {"subjects": []}
-    except:
+        data = json.loads(result_str)
+        # Ensure we have a subjects list
+        if isinstance(data, dict) and 'subjects' in data:
+            return data
+        elif isinstance(data, list):
+            # Sometimes LLM returns just the list
+            return {"subjects": data}
+        else:
+            return {"subjects": []}
+    except json.JSONDecodeError:
+        print(f"   ⚠️ Failed to parse subjects JSON")
         return {"subjects": []}
 
 
@@ -123,6 +140,7 @@ def extract_totals(section_text):
     Specialized for the bottom/totals section only.
     """
     if not section_text or len(section_text.strip()) < 10:
+        print("   ⚠️ No totals section text available")
         return {}
     
     if len(section_text) > 3000:
@@ -151,11 +169,11 @@ RULES:
 - total_marks: The marks obtained (e.g., 425, 85.5)
 - maximum_marks: The total possible marks (e.g., 500)
 - percentage: The percentage score (e.g., 85.0)
-- result: "PASS" or "FAIL"
+- result: "PASS" or "FAIL" (use uppercase)
 - division: "FIRST DIVISION", "SECOND DIVISION", "DISTINCTION", etc.
 - cgpa: If CGPA is mentioned (e.g., 8.5)
 - grade: Overall grade if mentioned (e.g., "A", "A+")
-- All numbers should be floats
+- All numbers should be floats or null
 - Return ONLY valid JSON
 
 Example output:
@@ -170,7 +188,13 @@ Example output:
 }}
 """
     
-    return _call_llm(prompt, "totals_extractor")
+    result_str = _call_llm(prompt, "totals_extractor")
+    try:
+        result = json.loads(result_str)
+        return result
+    except json.JSONDecodeError:
+        print(f"   ⚠️ Failed to parse totals JSON")
+        return {}
 
 
 def _call_llm(prompt, system_role):
@@ -178,6 +202,7 @@ def _call_llm(prompt, system_role):
     try:
         print(f"   🤖 Calling LLM for {system_role}...")
         
+        # Make the API call
         chat_completion = client.chat.completions.create(
             messages=[
                 {
@@ -194,29 +219,101 @@ def _call_llm(prompt, system_role):
             max_tokens=2000
         )
         
+        # Get response
         response = chat_completion.choices[0].message.content
+        
+        if not response:
+            print(f"   ⚠️ Empty response from LLM for {system_role}")
+            return "{}"
+        
+        # Clean up the response
         response = response.strip()
         
-        # Clean up any markdown formatting
+        # Remove markdown code blocks if present
         if response.startswith('```json'):
             response = response[7:]
-        if response.startswith('```'):
+        elif response.startswith('```'):
             response = response[3:]
+        
         if response.endswith('```'):
             response = response[:-3]
+        
         response = response.strip()
         
-        # Validate JSON
+        # Attempt to extract JSON if there's extra text
+        # Look for JSON object pattern
+        json_match = re.search(r'\{.*\}', response, re.DOTALL)
+        if json_match:
+            response = json_match.group()
+        
+        # Validate JSON (this will raise exception if invalid)
         json.loads(response)
         
-        print(f"   ✅ LLM response received ({len(response)} chars)")
+        print(f"   ✅ LLM response received and validated ({len(response)} chars)")
         return response
         
     except json.JSONDecodeError as e:
-        print(f"   ⚠️ JSON decode error: {e}")
-        print(f"   Raw response: {response[:200] if 'response' in locals() else 'None'}")
-        return json.dumps({"error": f"JSON parse failed: {str(e)}"})
+        print(f"   ⚠️ JSON decode error for {system_role}: {e}")
+        print(f"   Response preview: {response[:200] if 'response' in locals() else 'None'}")
+        return "{}"
         
     except Exception as e:
-        print(f"   ❌ LLM call failed: {e}")
-        return json.dumps({"error": str(e)})
+        print(f"   ❌ LLM call failed for {system_role}: {e}")
+        return "{}"
+
+
+# Optional: Add a helper function for regex-based subject extraction as fallback
+def extract_subjects_regex(section_text):
+    """
+    Fallback method: Extract subjects using regex patterns.
+    This can be used if LLM fails or for quick extraction.
+    """
+    subjects = []
+    
+    # Pattern 1: Subject name followed by marks (e.g., "MATHEMATICS 85")
+    pattern1 = r'([A-Z][A-Z\s]+?)\s+(\d+(?:\.\d+)?)(?:/\s*(\d+(?:\.\d+)?))?'
+    
+    # Pattern 2: Subject with hyphen (e.g., "PHYSICS - 85")
+    pattern2 = r'([A-Z][A-Z\s]+?)\s*-\s*(\d+(?:\.\d+)?)'
+    
+    # Pattern 3: Code + Subject + Marks (e.g., "041 MATHEMATICS 85")
+    pattern3 = r'(\d+)\s+([A-Z][A-Z\s]+?)\s+(\d+(?:\.\d+)?)'
+    
+    lines = section_text.split('\n')
+    for line in lines:
+        # Try pattern3 first (has code)
+        match = re.search(pattern3, line)
+        if match:
+            subjects.append({
+                "subject": match.group(2).strip(),
+                "marks": float(match.group(3)) if match.group(3) else None,
+                "max_marks": None,
+                "grade": None,
+                "code": match.group(1)
+            })
+            continue
+        
+        # Try pattern1
+        match = re.search(pattern1, line)
+        if match:
+            subjects.append({
+                "subject": match.group(1).strip(),
+                "marks": float(match.group(2)) if match.group(2) else None,
+                "max_marks": float(match.group(3)) if match.group(3) else None,
+                "grade": None,
+                "code": None
+            })
+            continue
+        
+        # Try pattern2
+        match = re.search(pattern2, line)
+        if match:
+            subjects.append({
+                "subject": match.group(1).strip(),
+                "marks": float(match.group(2)) if match.group(2) else None,
+                "max_marks": None,
+                "grade": None,
+                "code": None
+            })
+    
+    return subjects
