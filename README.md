@@ -65,18 +65,19 @@ GROQ_API_KEY=gsk_your_api_key_here
 
 ## 🏃‍♂️ Getting Started
 
+Use the helper script:
+
+```bash
+chmod +x setup.sh
+./setup.sh run
+```
+
 Launch the comparative dashboard with a single command:
 
 ```bash
 streamlit run app.py
 ```
 
-Or use the helper script:
-
-```bash
-chmod +x setup.sh
-./setup.sh run
-```
 
 Once running, simply upload your marksheet. The system will automatically:
 1. Perform OCR and spatial analysis.
