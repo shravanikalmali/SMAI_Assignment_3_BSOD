@@ -1,0 +1,99 @@
+{
+  "student_name": "NEETA PATEL",
+  "mother_name": "RANI PATEL",
+  "father_name": "SURESH PATEL",
+  "dob": "10-05-2004",
+  "school_name": "RADIANT CENTRAL ACADEMY JALALPUR AMBEDKAR NGR UP",
+  "unique_id": "R220/70086/0031",
+  "index_no": "21204050",
+  "board": "CENTRAL BOARD OF SECONDARY EDUCATION",
+  "exam_name": "SECONDARY SCHOOL EXAMINATION",
+  "year": 2020,
+  "subjects": [
+    {
+      "code": "184",
+      "subject": "ENGLISH LNG & LIT",
+      "marks": 96.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 78.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 96.0
+        }
+      ]
+    },
+    {
+      "code": "085",
+      "subject": "HINDI COURSE-B",
+      "marks": 94.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 75.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 94.0
+        }
+      ]
+    },
+    {
+      "code": "087",
+      "subject": "SOCIAL SCIENCE",
+      "marks": 86.0,
+      "grade": "B1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 68.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 86.0
+        }
+      ]
+    },
+    {
+      "code": "045",
+      "subject": "SCIENCE",
+      "marks": 87.0,
+      "grade": "A2",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 68.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 87.0
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "subject": "APPLIED MATHEMATICS",
+      "marks": 79.0,
+      "grade": "B1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 62.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 79.0
+        }
+      ]
+    }
+  ],
+  "internal_assessments": [],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "12-05-2020"
+}

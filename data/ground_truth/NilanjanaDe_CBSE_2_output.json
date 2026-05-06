@@ -1,0 +1,146 @@
+{
+  "student_name": "NILANJANA DE",
+  "mother_name": "RUPRANI DE",
+  "father_name": "PRANAB KRISHNA DE",
+  "dob": null,
+  "school_name": "VYASA INTL.SCHOOL VIDYARANYAPURA BANGALORE KK",
+  "unique_id": "K223/45229/0077",
+  "index_no": "18605300",
+  "board": "CENTRAL BOARD OF SECONDARY EDUCATION",
+  "exam_name": "SENIOR SCHOOL CERTIFICATE EXAMINATION",
+  "year": 2023,
+  "subjects": [
+    {
+      "code": "301",
+      "subject": "ENGLISH CORE",
+      "marks": 98.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 78.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "subject": "MATHEMATICS",
+      "marks": 95.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 75.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 95.0
+        }
+      ]
+    },
+    {
+      "code": "042",
+      "subject": "PHYSICS",
+      "marks": 87.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 93.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 63.0
+        }
+      ]
+    },
+    {
+      "code": "043",
+      "subject": "CHEMISTRY",
+      "marks": 92.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 62.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 92.0
+        }
+      ]
+    },
+    {
+      "code": "083",
+      "subject": "COMPUTER SCIENCE",
+      "marks": 97.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 67.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 97.0
+        }
+      ]
+    },
+    {
+      "code": "500",
+      "subject": "WORK EXPERIENCE",
+      "marks": null,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": null
+        },
+        {
+          "name": "TOTAL",
+          "marks": null
+        }
+      ]
+    },
+    {
+      "code": "502",
+      "subject": "HEALTH & PHYSICAL EDUCATION",
+      "marks": null,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": null
+        },
+        {
+          "name": "TOTAL",
+          "marks": null
+        }
+      ]
+    },{
+      "code": "503",
+      "subject": "GENERAL STUDIES",
+      "marks": null,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": null
+        },
+        {
+          "name": "TOTAL",
+          "marks": null
+        }
+      ]
+    }
+  ],
+  "internal_assessments": [],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "12-05-2023"
+}

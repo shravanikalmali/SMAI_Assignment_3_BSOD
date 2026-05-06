@@ -1,0 +1,115 @@
+{
+  "student_name": "NILANJANA DE",
+  "mother_name": "RUPRANI DE",
+  "father_name": "PRANAB KRISHNA DE",
+  "dob": "07-10-2005",
+  "school_name": "DELHI PUBLIC SCHOOL BAGALUR BANGALORE NORTH KK",
+  "unique_id": "K121/45077/0392",
+  "index_no": "18144598",
+  "board": "CENTRAL BOARD OF SECONDARY EDUCATION",
+  "exam_name": "SECONDARY SCHOOL EXAMINATION",
+  "year": 2021,
+  "subjects": [
+    {
+      "code": "184",
+      "subject": "ENGLISH LNG & LIT",
+      "marks": 96.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 76.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 96.0
+        }
+      ]
+    },
+    {
+      "code": "085",
+      "subject": "HINDI COURSE-B",
+      "marks": 98.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 78.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "087",
+      "subject": "SOCIAL SCIENCE",
+      "marks": 98.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 78.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "086",
+      "subject": "SCIENCE",
+      "marks": 98.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 78.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "subject": "MATHEMATICS STANDARD",
+      "marks": 99.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 79.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 99.0
+        }
+      ]
+    },
+    {
+      "code": "402",
+      "subject": "INFORMATION TECHNOLOGY",
+      "marks": 99.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 49.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 99.0
+        }
+      ]
+    }
+  ],
+  "internal_assessments": [],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "03-08-2021"
+}

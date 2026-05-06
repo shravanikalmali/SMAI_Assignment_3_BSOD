@@ -1,0 +1,115 @@
+{
+  "student_name": "KRISHNA BALAN",
+  "mother_name": "PRACHI BALAN",
+  "father_name": "RAJEEV BALAN",
+  "dob": "15-05-2006",
+  "school_name": "DR AMBEDKAR VIDYA NIKETAN TRIVANARIM",
+  "unique_id": "K121/45877/0382",
+  "index_no": "19612345",
+  "board": "CENTRAL BOARD OF SECONDARY EDUCATION",
+  "exam_name": "SENIOR SCHOOL CERTIFICATE EXAMINATION",
+  "year": 2022,
+  "subjects": [
+    {
+      "code": "301",
+      "subject": "ENGLISH CORE",
+      "marks": 96.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 76.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 96.0
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "subject": "MATHEMATICS",
+      "marks": 98.0,
+      "grade": "B2",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 78.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "027",
+      "subject": "HISTORY",
+      "marks": 98.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 76.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "029",
+      "subject": "GEOGRAPHY",
+      "marks": 98.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 79.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "083",
+      "subject": "COMPUTER SCIENCE",
+      "marks": 98.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 79.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 98.0
+        }
+      ]
+    },
+    {
+      "code": "066",
+      "subject": "ENTREPRENEURSHIP",
+      "marks": 99.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 49.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 99.0
+        }
+      ]
+    }
+  ],
+  "internal_assessments": [],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "03-08-2021"
+}

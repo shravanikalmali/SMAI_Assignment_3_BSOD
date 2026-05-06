@@ -1,0 +1,99 @@
+{
+  "student_name": "NANDITA SINGH",
+  "mother_name": "ANISHA SINGH",
+  "father_name": "VARUN SINGH",
+  "dob": "10-08-2007",
+  "school_name": "ORCHIDS THE INTERNATIONAL SCHOOL THANE(WEST)",
+  "unique_id": "R225/99002/00101",
+  "index_no": "23204050",
+  "board": "CENTRAL BOARD OF SECONDARY EDUCATION",
+  "exam_name": "SENIOR SCHOOL CERTIFICATE EXAMINATION",
+  "year": 2025,
+  "subjects": [
+    {
+      "code": "301",
+      "subject": "ENGLISH LNG & LIT",
+      "marks": 92.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 74.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 92.0
+        }
+      ]
+    },
+    {
+      "code": "028",
+      "subject": "POLITICAL SCIENCE",
+      "marks": 88.0,
+      "grade": "A2",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 71.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 88.0
+        }
+      ]
+    },
+    {
+      "code": "027",
+      "subject": "HISTORY",
+      "marks": 79.0,
+      "grade": "B2",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 62.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 79.0
+        }
+      ]
+    },
+    {
+      "code": "042",
+      "subject": "PHYSICS",
+      "marks": 92.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 65.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 92.0
+        }
+      ]
+    },
+    {
+      "code": "037",
+      "subject": "PSYCHOLOGY",
+      "marks": 96.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 68.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 96.0
+        }
+      ]
+    }
+  ],
+  "internal_assessments": [],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "12-05-2025"
+}

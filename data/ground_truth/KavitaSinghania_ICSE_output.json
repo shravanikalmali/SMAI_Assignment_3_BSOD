@@ -1,0 +1,97 @@
+{
+  "student_name": "KAVITA SINGHANIA",
+  "mother_name": "RENU SINGHANIA",
+  "father_name": "AMIT SINGHANIA",
+  "dob": "25.09.2008",
+  "school_name": "ST. XAVIER'S HIGH SCHOOL, KOLKATA",
+  "unique_id": "6543210",
+  "index_no": "1234567 / 088",
+  "board": "COUNCIL FOR THE INDIAN SCHOOL CERTIFICATE EXAMINATIONS, NEW DELHI",
+  "exam_name": "INDIAN CERTIFICATE OF SECONDARY EDUCATION (CLASS - X) - YEAR 2024",
+  "year": 2024,
+  "subjects": [
+    {
+      "code": null,
+      "subject": "ENGLISH",
+      "marks": 90.0,
+      "grade": null,
+      "components": [
+        {
+            "name": "ENGLISH LANGUAGE",
+            "marks": 89.0
+        },
+        {
+            "name": "LITERATURE IN ENGLISH",
+            "marks": 100
+        }
+      ]
+    },
+    {
+      "code": null,
+      "subject": "BENGALI",
+      "marks": 94.0,
+      "grade": null,
+      "components": []
+    },
+    {
+      "code": null,
+      "subject": "HISTORY, CIVICS & GEOGRAPHY",
+      "marks": 97.0,
+      "grade": null,
+      "components": [
+        {
+            "name": "HISTORY & CIVICS",
+            "marks": 97.0
+        },
+        {
+            "name": "GEOGRPAHY",
+            "marks": 96.0
+        }
+      ]
+    },
+    {
+      "code": null,
+      "subject": "MATHEMATICS",
+      "marks": 97.0,
+      "grade": null,
+      "components": []
+    },
+    {
+      "code": null,
+      "subject": "SCIENCE",
+      "marks": 91.0,
+      "grade": null,
+      "components": [
+        {
+          "name": "PHYSICS",
+          "marks": 92.0
+        },
+        {
+          "name": "CHEMISTRY",
+          "marks": 91.0
+        },
+        {
+          "name": "BIOLOGY",
+          "marks": 90.0
+        }
+      ]
+    },
+    {
+      "code": null,
+      "subject": "COMPUTER APPLICATIONS",
+      "marks": 100.0,
+      "grade": null,
+      "components": []
+    }
+  ],
+  "internal_assessments": [
+    {
+      "name": "SUPW AND COMMUNITY SERVICE",
+      "grade": "A"
+    }
+  ],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "15.06.2008"
+}

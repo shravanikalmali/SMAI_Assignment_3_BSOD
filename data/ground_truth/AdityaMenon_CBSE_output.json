@@ -1,0 +1,99 @@
+{
+  "student_name": "ADITYA MENON",
+  "mother_name": "SANJANA RAJESH",
+  "father_name": "VENKATA MENON",
+  "dob": "20-11-2003",
+  "school_name": "EKLAVYA MODEL RESIDENTIAL SCHOOL EAST GODAVARI",
+  "unique_id": "R221/30904/00102",
+  "index_no": "23102469",
+  "board": "CENTRAL BOARD OF SECONDARY EDUCATION",
+  "exam_name": "SENIOR SCHOOL CERTIFICATE EXAMINATION",
+  "year": 2021,
+  "subjects": [
+    {
+      "code": "301",
+      "subject": "ENGLISH CORE",
+      "marks": 89.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 70.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 89.0
+        }
+      ]
+    },
+    {
+      "code": "037",
+      "subject": "PSYCHOLOGY",
+      "marks": 93.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 65.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 93.0
+        }
+      ]
+    },
+    {
+      "code": "027",
+      "subject": "HISTORY",
+      "marks": 87.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 68.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 87.0
+        }
+      ]
+    },
+    {
+      "code": "029",
+      "subject": "GEOGRAPHY",
+      "marks": 91.0,
+      "grade": "A2",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 62.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 91.0
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "subject": "MATHEMATICS",
+      "marks": 76.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 58.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 76.0
+        }
+      ]
+    }
+  ],
+  "internal_assessments": [],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "03-08-2021"
+}

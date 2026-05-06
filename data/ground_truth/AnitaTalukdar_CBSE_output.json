@@ -1,0 +1,99 @@
+{
+  "student_name": "ANITA TALUKDAR",
+  "mother_name": "USHA DUTTA",
+  "father_name": "SANJAY TALUKDAR",
+  "dob": "10-10-2008",
+  "school_name": "ARMY PUBLIC SCHOOL BARRACKPORE CANTT",
+  "unique_id": "W224/91001/0045",
+  "index_no": "24160002",
+  "board": "CENTRAL BOARD OF SECONDARY EDUCATION",
+  "exam_name": "SECONDARY SCHOOL EXAMINATION",
+  "year": 2024,
+  "subjects": [
+    {
+      "code": "184",
+      "subject": "ENGLISH LNG & LIT",
+      "marks": 87.0,
+      "grade": "A2",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 68.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 87.0
+        }
+      ]
+    },
+    {
+      "code": "002",
+      "subject": "HINDI COURSE-A",
+      "marks": 90.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 72.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 90.0
+        }
+      ]
+    },
+    {
+      "code": "041",
+      "subject": "MATHEMATICS STANDARD",
+      "marks": 89.0,
+      "grade": "A1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 70.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 89.0
+        }
+      ]
+    },
+    {
+      "code": "086",
+      "subject": "SCIENCE",
+      "marks": 76.0,
+      "grade": "B2",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 58.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 76.0
+        }
+      ]
+    },
+    {
+      "code": "087",
+      "subject": "SOCIAL SCIENCE",
+      "marks": 83.0,
+      "grade": "B1",
+      "components": [
+        {
+          "name": "THEORY",
+          "marks": 64.0
+        },
+        {
+          "name": "TOTAL",
+          "marks": 83.0
+        }
+      ]
+    }
+  ],
+  "internal_assessments": [],
+  "total": null,
+  "percentage": null,
+  "result_status": "PASS",
+  "result_date": "15-05-2024"
+}
